@@ -138,10 +138,10 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
 webrtc_ctx = webrtc_streamer(
     key="object-detection",
     mode=WebRtcMode.SENDRECV,
-    rtc_configuration={
-        "iceServers": get_ice_servers(),
-        "iceTransportPolicy": "relay",
-    },
+    #rtc_configuration={
+    #    "iceServers": get_ice_servers(),
+    #    "iceTransportPolicy": "relay",
+    #},
     video_frame_callback=video_frame_callback,
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
@@ -158,9 +158,3 @@ if st.checkbox("Show the detected labels", value=True):
         while True:
             result = result_queue.get()
             labels_placeholder.table(result)
-
-st.markdown(
-    "This demo uses a model and code from "
-    "https://github.com/robmarkcole/object-detection-app. "
-    "Many thanks to the project."
-)
